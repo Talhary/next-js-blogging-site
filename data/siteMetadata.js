@@ -1,9 +1,9 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'Talha Blogs',
+  author: 'Talha Riaz',
+  headerTitle: 'MATH & CS',
+  description: 'Blogging Site for Math and CS Students and for tutorials',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://www.talhablogging.site',
