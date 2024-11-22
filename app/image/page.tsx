@@ -178,7 +178,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.map((image) => (
                             <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                <div className="relative h-64">
+                                <div className="relative h-full">
                                     <Image
                                         src={image.attrs.src}
                                         alt="Generated"
