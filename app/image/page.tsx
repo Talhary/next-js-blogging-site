@@ -2,9 +2,9 @@
 
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { GenDallEParams, ImageResponse } from '@/types/gen-image.ts';
+import { GenDallEParams, ImageResponse } from '../types/gen-image';
 
-const generateImage = async (params: GenDallEParams): Promise<ImageResponse[]> => {
+const generateImage = async (params: GenDallEParams) => {
   const res = await fetch('/api/gen/image', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
