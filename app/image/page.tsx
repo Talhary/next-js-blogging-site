@@ -49,7 +49,7 @@ export default function Home() {
     const [height, setHeight] = useState<number>(1024);
     const [width, setWidth] = useState<number>(1024);
     const [model, setModel] = useState<string>('dall-e-3');
-    const [count, setCount] = useState<number>(1);
+    const [count, setCount] = useState<number>(3);
     const [images, setImages] = useState<ImageResponse[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
