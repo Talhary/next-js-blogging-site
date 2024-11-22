@@ -1,3 +1,4 @@
+export const maxDuration = 30;
 export const POST = async (req: Request) => {
     try {
         const { text, height, width, model, count } = await req.json();
