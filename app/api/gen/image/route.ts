@@ -3,6 +3,7 @@ export const POST = async (req: Request) => {
     try {
         const { text, height, width, model, count } = await req.json();
         const res = await genDallE(text, height, width, model, count);
+        console.log(res)
         return Response.json(res);
     } catch (error) {
         return Response.json({
