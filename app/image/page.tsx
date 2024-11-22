@@ -122,12 +122,12 @@ export default function Home() {
                         disabled={isLoading}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
                     >
-                        {model === 'dall-e-3' && <div>
+                        {model === 'dall-e-3' && <>
                             <option value="1024x1024">Square (1024 x 1024)</option>
                             <option value="1792x1024">Landscape (1792 x 1024)</option>
                             <option value="1024x1792">Portrait (1024 x 1792)</option>
 
-                        </div>}
+                        </>}
                         {model === 'flux-1-pro' && <option value="1440x1440">Square (1440 x 1440)</option>}
                         {model === 'flux-1-pro' && <option value="960x1440">Portrait (960 x 1440)</option>}
                         {model === 'flux-1-pro' && <option value="1440x960">Landscape (1440 x 960)</option>}
