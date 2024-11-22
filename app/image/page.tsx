@@ -178,19 +178,20 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {images.map((image) => (
                             <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                                <div className="relative h-full">
+                                <div className="relative w-full h-full min-h-[256px]">
                                     <Image
                                         src={image.attrs.src}
                                         alt="Generated"
                                         fill
-                                        className="object-cover"
-                                        loading="lazy"
+                                        className="object-cover w-full h-full"
+                                        // loading="lazy"
                                         onError={(e) => {
                                             const target = e.target as HTMLImageElement;
-                                            target.src = '/placeholder-image.jpg'; // Add a placeholder image
+                                            target.src = '/placeholder-image.jpg';
                                         }}
                                     />
                                 </div>
+
                                 <div className="p-4 space-y-2">
                                     <p className="text-sm"><span className="font-medium">Prompt:</span> {image.attrs.aiParams.prompt}</p>
                                     <p className="text-sm"><span className="font-medium">Model:</span> {image.attrs.aiParams.model}</p>
