@@ -77,6 +77,12 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'picsum.photos',
         },
+        {
+          protocol: 'https',
+          hostname: 'cdn.gamma.app',
+          port: '',
+          pathname: '/ul0hy9foos6tlc9/generated-images/**',
+        },
       ],
       unoptimized,
     },

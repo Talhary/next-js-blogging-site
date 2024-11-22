@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Talha Blogs',
   author: 'Talha Riaz',
-  headerTitle: 'MATH & CS',
+  headerTitle: 'Talha Blogging',
   description: 'Blogging Site for Math and CS Students and for tutorials',
   language: 'en-us',
   theme: 'system', // system, dark or light
