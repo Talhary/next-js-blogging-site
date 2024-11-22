@@ -137,20 +137,20 @@ export default function ImageGenerator() {
           {formData.model === 'dall-e-3' && (
             <>
               <option value="1024x1024">Square (1024 x 1024)</option>
-              <option value="1792x1024">Landscape (1792 x 1024)</option>
-              <option value="1024x1792">Portrait (1024 x 1792)</option>
+              <option value="1792x1024">Portrait (1024 x 1792)</option>
+              <option value="1024x1792">Landscape (1792 x 1024)</option>
             </>
           )}
           {formData.model === 'flux-1-pro' && (
             <>
               <option value="1440x1440">Square (1440 x 1440)</option>
-              <option value="960x1440">Portrait (960 x 1440)</option>
-              <option value="1440x960">Landscape (1440 x 960)</option>
+              <option value="960x1440">Landscape (1440 x 960)</option>
+              <option value="1440x960">Portrait (960 x 1440)</option>
             </>
           )}
           {formData.model === 'flux-1-schnell' && (
             <>
-              <option value="1024x1024">Square (1152 x 896)</option>
+              <option value="1024x1024">Square (1024 x 1024)</option>
               <option value="1152x896">Portrait (1152 x 896)</option>
               <option value="896x1152">Landscape (896 x 1152)</option>
             </>
