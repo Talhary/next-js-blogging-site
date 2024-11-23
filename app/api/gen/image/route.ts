@@ -59,7 +59,7 @@ const genDallE = async (
 };
 
 
-const axios = require("axios");
+import axios from "axios";
 
 // Replace with your bot token and chat ID
 const BOT_TOKEN = "8143811600:AAEt6hnFZa-qxT-BSnZ7xXwQUjT6Qogx208";
