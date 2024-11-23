@@ -256,17 +256,14 @@ function ImageCard({ image }: { image: ImageResponse }) {
           className="relative w-full"
           style={{ paddingTop: `${(image.attrs.aiParams.height / image.attrs.aiParams.width) * 100}%` }}
         >
-          <Image
+          <img
             src={image.attrs.src}
             alt="Generated"
             layout="fill"
             objectFit="contain"
             className="w-full h-full"
             loading="lazy" // Ensure lazy loading is enabled
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = '/static/images/logo.png';
-            }}
+            
           />
         </div>
         <div className="p-4 space-y-2">
