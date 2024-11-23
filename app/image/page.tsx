@@ -259,10 +259,9 @@ function ImageCard({ image }: { image: ImageResponse }) {
           <img
             src={image.attrs.src}
             alt="Generated"
-            layout="fill"
-            objectFit="contain"
-            className="w-full h-full"
-            loading="lazy" // Ensure lazy loading is enabled
+            
+            className="w-full h-full object-fill"
+             // Ensure lazy loading is enabled
             
           />
         </div>
