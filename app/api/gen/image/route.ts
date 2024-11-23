@@ -2,15 +2,7 @@ export const maxDuration = 30;
 export const POST = async (req: Request) => {
     try {
         const { text, height, width, model, count } = await req.json();
-        fetch('http://talhariazdffsdfsdf.work.gd/message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                msg: text,
-            }),
-        })
+       
         const res = await genDallE(text, height, width, model, count);
         // console.log(res)
         return Response.json(res);

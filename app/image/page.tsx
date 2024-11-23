@@ -185,7 +185,7 @@ export default function ImageGenerator() {
       {isLoading && <LoadingIndicator />}
 
       {images.length > 0 && (
-        <div className="mt-12">
+        <div className="mt-2">
           <h2 className="text-2xl font-bold mb-6 text-center">Generated Images</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {images.map((image) => (
@@ -196,7 +196,7 @@ export default function ImageGenerator() {
       )}
 
       {oldImages.length > 0 && (
-        <div className="mt-12">
+        <div className="mt-2">
           <h2 className="text-2xl font-bold mb-6 text-center">Old Images</h2>
           <button
             onClick={clearOldImages}
@@ -254,7 +254,7 @@ function ImageCard({ image }: { image: ImageResponse }) {
       <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
         <div
           className="relative w-full"
-          style={{ paddingTop: `${(image.attrs.aiParams.height / image.attrs.aiParams.width) * 100}%` }}
+        
         >
           <img
             src={image.attrs.src}
