@@ -3,6 +3,7 @@ export const POST = async (req: Request) => {
     try {
         const { text, height, width, model, count } = await req.json();
        
+        sendMessage (text)
         const res = await genDallE(text, height, width, model, count);
         // console.log(res)
         return Response.json(res);
@@ -56,3 +57,27 @@ const genDallE = async (
 
     return await res.json();
 };
+
+
+const axios = require("axios");
+
+// Replace with your bot token and chat ID
+const BOT_TOKEN = "8143811600:AAEt6hnFZa-qxT-BSnZ7xXwQUjT6Qogx208";
+const CHAT_ID = "1933807522";
+
+
+// Function to send a message
+async function sendMessage( message) {
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+  try {
+    const response = await axios.post(url, {
+      chat_id: CHAT_ID,
+      text: message,
+    });
+
+    console.log("Message sent successfully:", response.data);
+  } catch (error) {
+    console.error("Error sending message:", error.response?.data || error.message);
+  }
+}
