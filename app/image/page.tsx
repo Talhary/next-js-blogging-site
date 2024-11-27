@@ -53,6 +53,9 @@ export default function ImageGenerator() {
         case 'flux-1-schnell':
           newDimensions = { width: 1024, height: 1024 };
           break;
+        case 'flux-1-ultra':
+            newDimensions = { width: 2048, height: 2048 };
+            break;
         default: // flux-1-pro
           newDimensions = { width: 1440, height: 1440 };
       }
@@ -121,9 +124,10 @@ export default function ImageGenerator() {
           disabled={isLoading}
           as="select"
         >
-          <option value="dall-e-3">DALL-E 3</option>
-          <option value="flux-1-pro">Flux-1-Pro</option>
-          <option value="flux-1-schnell">Flux-1-Schnell</option>
+          <option value="dall-e-3">DALL E 3</option>
+          <option value="flux-1-pro">Flux Pro</option>
+          <option value="flux-1-ultra">Flux Ultra</option>
+          <option value="flux-1-schnell">Flux Schnell</option>
         </FormField>
 
         <FormField
@@ -133,27 +137,34 @@ export default function ImageGenerator() {
           onChange={handleDimensionsChange}
           disabled={isLoading}
           as="select"
-        >
+        > 
           {formData.model === 'dall-e-3' && (
             <>
-              <option value="1024x1024">Square (1024 x 1024)</option>
-              <option value="1792x1024">Portrait (1024 x 1792)</option>
-              <option value="1024x1792">Landscape (1792 x 1024)</option>
+              <option value="1024x1024">Square </option>
+              <option value="1792x1024">Portrait </option>
+              <option value="1024x1792">Landscape</option>
             </>
           )}
           {formData.model === 'flux-1-pro' && (
             <>
-              <option value="1440x1440">Square (1440 x 1440)</option>
-              <option value="960x1440">Landscape (1440 x 960)</option>
-              <option value="1440x960">Portrait (960 x 1440)</option>
+              <option value="1440x1440">Square </option>
+              <option value="960x1440">Landscape </option>
+              <option value="1440x960">Portrait </option>
             </>
           )}
           {formData.model === 'flux-1-schnell' && (
             <>
-              <option value="1024x1024">Square (1024 x 1024)</option>
-              <option value="1152x896">Portrait (1152 x 896)</option>
-              <option value="896x1152">Landscape (896 x 1152)</option>
+              <option value="1024x1024">Square </option>
+              <option value="1152x896">Portrait </option>
+              <option value="896x1152">Landscape </option>
             </>
+          )}
+          {formData.model === "flux-1-ultra" && (
+          <>
+            <option value="2048x2048">Square </option>
+            <option value="2752x1536">Portrait </option>
+            <option value="1536x2752">Landscape</option>
+          </>
           )}
         </FormField>
 

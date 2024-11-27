@@ -2,7 +2,7 @@ export interface GenDallEParams {
     text: string;
     height?: number;
     width?: number;
-    model?: 'flux-1-pro' | 'dall-e-3' | 'flux-1-schnell';
+    model?: 'flux-1-pro' | 'dall-e-3' | 'flux-1-schnell' | 'flux-1-ultra' ;
     count?: number;
   }
   
