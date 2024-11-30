@@ -1,12 +1,15 @@
+import { verifyCaptcha } from "actions/verify-captcha";
+import axios from "axios";
 export const maxDuration = 30;
 export const POST = async (req: Request) => {
     try {
-        const { text, height, width, model, count } = await req.json();
-       
+        const { text, height, width, model, count ,captcha } = await req.json();
+        console.log(captcha)
+       await verifyCaptcha(captcha)
         //sendMessage (text)
-       // const res = await genDallE(text, height, width, model, count);
-        // console.log(res)
-        return Response.json({code:500,msg:"Maintainance "});
+       const res = await genDallE(text, height, width, model, count);
+        console.log(res)
+        return Response.json(res);
     } catch (error) {
         return Response.json({
             err: true,
@@ -59,7 +62,7 @@ const genDallE = async (
 };
 
 
-import axios from "axios";
+
 
 // Replace with your bot token and chat ID
 const BOT_TOKEN = "8143811600:AAEt6hnFZa-qxT-BSnZ7xXwQUjT6Qogx208";

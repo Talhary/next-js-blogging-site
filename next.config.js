@@ -52,6 +52,10 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
+  {
+    key: "Content-Security-Policy",
+    value: "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com;",
+  },
 ]
 
 const output = process.env.EXPORT ? 'export' : undefined

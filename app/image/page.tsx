@@ -3,22 +3,35 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { GenDallEParams, ImageResponse } from '../types/gen-image';
+import { useReCaptcha } from "next-recaptcha-v3";
 
-const generateImage = async (params: GenDallEParams) => {
-  const res = await fetch('/api/gen/image', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(params),
-  });
 
-  if (!res.ok) {
-    throw new Error(`HTTP error! status: ${res.status}`);
-  }
-  
-  return await res.json();
-};
 
 export default function ImageGenerator() {
+  const { executeRecaptcha } = useReCaptcha();
+  const generateImage = async (params: GenDallEParams,token:string) => {
+    try {
+      
+      if (!token) {
+        throw new Error("Failed to generate reCAPTCHA token.");
+      }
+  
+      const res = await fetch('/api/gen/image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...params, captcha: token }),
+      });
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+  
+      return await res.json();
+    } catch (err) {
+      console.error("Error in generateImage:", err);
+      throw err; // Propagate the error for further handling.
+    }
+  };
   const [formData, setFormData] = useState<GenDallEParams>({
     text: '',
     height: 1440,
@@ -72,9 +85,10 @@ export default function ImageGenerator() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-
+    const token = await executeRecaptcha("form_submit");
+    console.log(token)
     try {
-      const response = await generateImage(formData);
+      const response = await generateImage(formData,token);
       if(response?.code){
         return setError(response.message)
       }
@@ -167,7 +181,6 @@ export default function ImageGenerator() {
           </>
           )}
         </FormField>
-
         <FormField
           label="Count:"
           name="count"
