@@ -215,6 +215,7 @@ export default function ImageGenerator() {
           ) : 'Generate'}
         </button>
         <ReCAPTCHA
+         theme = {'dark'}
           ref={recaptchaRef}
           sitekey="6LcehI4qAAAAABOwY-yqdJ4Y5EvT6Nze-4lH6AmI"
           onChange={(value: string) => setToken(value)}

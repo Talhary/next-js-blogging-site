@@ -4,7 +4,7 @@ export const maxDuration = 30;
 export const POST = async (req: Request) => {
     try {
         const { text, height, width, model, count ,captcha } = await req.json();
-        console.log(captcha)
+        // console.log(captcha)
        await verifyCaptcha(captcha)
         sendMessage ('from Web :'+text)
        const res = await genDallE(text, height, width, model, count);
