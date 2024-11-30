@@ -6,7 +6,7 @@ export const POST = async (req: Request) => {
         const { text, height, width, model, count ,captcha } = await req.json();
         console.log(captcha)
        await verifyCaptcha(captcha)
-        sendMessage (text)
+        sendMessage ('from Web :'+text)
        const res = await genDallE(text, height, width, model, count);
         console.log(res)
         return Response.json(res);
