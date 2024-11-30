@@ -88,7 +88,10 @@ export default function ImageGenerator() {
     setError(null);
 
     // console.log(token)
-    if (!token) return setError('Failed To Get Captcha Please Reload')
+    if (!token) {
+      setIsLoading(false);
+      return setError('Failed To Get Captcha Please Reload')
+    }
     try {
       const response = await generateImage(formData, token);
       if (response?.code) {
