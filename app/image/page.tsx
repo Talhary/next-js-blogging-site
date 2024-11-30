@@ -1,37 +1,38 @@
 'use client';
 
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState,useRef } from 'react';
 // import Image from 'next/image';
 import { GenDallEParams, ImageResponse } from '../types/gen-image';
-import { useReCaptcha } from "next-recaptcha-v3";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 
 export default function ImageGenerator() {
-  const { executeRecaptcha } = useReCaptcha();
-  const generateImage = async (params: GenDallEParams,token:string) => {
+  const generateImage = async (params: GenDallEParams, token: string) => {
     try {
-      
+
       if (!token) {
         throw new Error("Failed to generate reCAPTCHA token.");
       }
-  
+
       const res = await fetch('/api/gen/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...params, captcha: token }),
       });
-  
+
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
-  
+
       return await res.json();
     } catch (err) {
       console.error("Error in generateImage:", err);
       throw err; // Propagate the error for further handling.
     }
   };
+
+  const recaptchaRef:any = useRef();
   const [formData, setFormData] = useState<GenDallEParams>({
     text: '',
     height: 1440,
@@ -43,7 +44,7 @@ export default function ImageGenerator() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [oldImages, setOldImages] = useState<ImageResponse[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const [token, setToken] = useState('')
 
   useEffect(() => {
     // Load old images from local storage when the component mounts
@@ -67,8 +68,8 @@ export default function ImageGenerator() {
           newDimensions = { width: 1024, height: 1024 };
           break;
         case 'flux-1-ultra':
-            newDimensions = { width: 2048, height: 2048 };
-            break;
+          newDimensions = { width: 2048, height: 2048 };
+          break;
         default: // flux-1-pro
           newDimensions = { width: 1440, height: 1440 };
       }
@@ -85,20 +86,21 @@ export default function ImageGenerator() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    const token = await executeRecaptcha("form_submit");
+
     // console.log(token)
-    if(!token)return setError('Failed To Get Captcha Please Reload')
+    if (!token) return setError('Failed To Get Captcha Please Reload')
     try {
-      const response = await generateImage(formData,token);
-      if(response?.code){
+      const response = await generateImage(formData, token);
+      if (response?.code) {
         return setError(response.message)
       }
-      if(response?.err){
+      if (response?.err) {
         return setError(response.msg)
 
       }
+      recaptchaRef?.current?.reset();
       setImages(response);
-      
+
       // Store the new images in local storage
       const updatedOldImages = [...oldImages, ...response];
       setOldImages(updatedOldImages);
@@ -156,7 +158,7 @@ export default function ImageGenerator() {
           onChange={handleDimensionsChange}
           disabled={isLoading}
           as="select"
-        > 
+        >
           {formData.model === 'dall-e-3' && (
             <>
               <option value="1024x1024">Square </option>
@@ -179,11 +181,11 @@ export default function ImageGenerator() {
             </>
           )}
           {formData.model === "flux-1-ultra" && (
-          <>
-            <option value="2048x2048">Square </option>
-            <option value="2752x1536">Portrait </option>
-            <option value="1536x2752">Landscape</option>
-          </>
+            <>
+              <option value="2048x2048">Square </option>
+              <option value="2752x1536">Portrait </option>
+              <option value="1536x2752">Landscape</option>
+            </>
           )}
         </FormField>
         <FormField
@@ -209,6 +211,11 @@ export default function ImageGenerator() {
             </>
           ) : 'Generate'}
         </button>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey="6LcehI4qAAAAABOwY-yqdJ4Y5EvT6Nze-4lH6AmI"
+          onChange={(value: string) => setToken(value)}
+        />
       </form>
 
       {isLoading && <LoadingIndicator />}
@@ -241,7 +248,7 @@ export default function ImageGenerator() {
         </div>
       )}
     </div>
-    
+
   );
 }
 
@@ -279,32 +286,32 @@ function LoadingIndicator() {
 }
 
 function ImageCard({ image }: { image: ImageResponse }) {
-    return (
-      <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
-        <div
-          className="relative w-full"
-        
-        >
-          <img
-            src={image.attrs.src}
-            alt="Generated"
-            
-            className="w-full h-full object-fill"
-             // Ensure lazy loading is enabled
-            
-          />
-        </div>
-        <div className="p-4 space-y-2">
-          <p className="text-sm dark:text-gray-300">
-            <span className="font-medium">Prompt:</span> {image.attrs.aiParams.prompt}
-          </p>
-          <p className="text-sm dark:text-gray-300">
-            <span className="font-medium">Model:</span> {image.attrs.aiParams.model}
-          </p>
-          <p className="text-sm dark:text-gray-300">
-            <span className="font-medium">Dimensions:</span> {image.attrs.aiParams.width}x{image.attrs.aiParams.height}
-          </p>
-        </div>
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
+      <div
+        className="relative w-full"
+
+      >
+        <img
+          src={image.attrs.src}
+          alt="Generated"
+
+          className="w-full h-full object-fill"
+        // Ensure lazy loading is enabled
+
+        />
       </div>
-    );
-  }
+      <div className="p-4 space-y-2">
+        <p className="text-sm dark:text-gray-300">
+          <span className="font-medium">Prompt:</span> {image.attrs.aiParams.prompt}
+        </p>
+        <p className="text-sm dark:text-gray-300">
+          <span className="font-medium">Model:</span> {image.attrs.aiParams.model}
+        </p>
+        <p className="text-sm dark:text-gray-300">
+          <span className="font-medium">Dimensions:</span> {image.attrs.aiParams.width}x{image.attrs.aiParams.height}
+        </p>
+      </div>
+    </div>
+  );
+}
