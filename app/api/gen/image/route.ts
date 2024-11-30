@@ -3,10 +3,10 @@ export const POST = async (req: Request) => {
     try {
         const { text, height, width, model, count } = await req.json();
        
-        sendMessage (text)
-        const res = await genDallE(text, height, width, model, count);
+        //sendMessage (text)
+       // const res = await genDallE(text, height, width, model, count);
         // console.log(res)
-        return Response.json(res);
+        return Response.json({code:500,msg:"Maintainance "});
     } catch (error) {
         return Response.json({
             err: true,
