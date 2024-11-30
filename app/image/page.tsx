@@ -86,11 +86,16 @@ export default function ImageGenerator() {
     setIsLoading(true);
     setError(null);
     const token = await executeRecaptcha("form_submit");
-    console.log(token)
+    // console.log(token)
+    if(!token)return setError('Failed To Get Captcha Please Reload')
     try {
       const response = await generateImage(formData,token);
       if(response?.code){
         return setError(response.message)
+      }
+      if(response?.err){
+        return setError(response.msg)
+
       }
       setImages(response);
       
