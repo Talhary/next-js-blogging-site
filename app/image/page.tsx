@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { GenDallEParams, ImageResponse } from '../types/gen-image';
 import { useReCaptcha } from "next-recaptcha-v3";
 
