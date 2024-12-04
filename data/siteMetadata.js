@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'Blogging Site for Math and CS Students and for tutorials',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://www.talhablogging.site',
+  siteUrl: 'https://talhablogging.site',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
