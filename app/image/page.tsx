@@ -119,6 +119,10 @@ export default function ImageGenerator() {
     setOldImages([]);
     localStorage.removeItem('oldImages');
   };
+
+  return <div>
+   <a href="t.me/imagrn_bot"> New Image gen In telegram </a>
+  </div>
   return (
     <div className="container mx-auto px-4 py-8 dark:bg-gray-900 dark:text-white">
       <h1 className="text-3xl font-bold mb-8 text-center">Generate Images</h1>
