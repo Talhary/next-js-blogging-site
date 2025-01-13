@@ -121,7 +121,7 @@ export default function ImageGenerator() {
   };
 
   return <div>
-   <a href="t.me/imagrn_bot"> New Image gen In telegram </a>
+   <a href="https://t.me/imagrn_bot"> New Image gen In telegram </a>
   </div>
   return (
     <div className="container mx-auto px-4 py-8 dark:bg-gray-900 dark:text-white">
